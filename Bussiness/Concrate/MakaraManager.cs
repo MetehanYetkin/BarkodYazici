@@ -1,4 +1,5 @@
 ﻿using Bussiness.Abstract;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrate;
 using System;
@@ -14,24 +15,28 @@ namespace Bussiness.Concrate
         {
             _makaraDal = makaraDal;
         }
-        public void Add(Makara makara)
+        public IResult Add(Makara makara)
         {
             _makaraDal.Add(makara);
+           return new SuccessResult("Makara Eklendi");
         }
 
-        public void Delete(Makara makara)
+        public IResult Delete(Makara makara)
         {
             _makaraDal.Delete(makara);
+            return new SuccessResult("Makara Silindi");
+
         }
 
-        public List<Makara> GetAll()
+        public IDataResult<List<Makara>> GetAll()
         {
-            return new List<Makara>(_makaraDal.GetAll());
+            return new SuccessDataResult<List<Makara>>(_makaraDal.GetAll(),"Makaralar Listelendi");
         }
 
-        public void Update(Makara makara)
+        public IResult Update(Makara makara)
         {
             _makaraDal.Update(makara);
+            return new SuccessResult("Makara Güncellendi");
         }
     }
 }

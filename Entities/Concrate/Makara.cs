@@ -11,6 +11,6 @@ namespace Entities.Concrate
         public int MakaraTipi { get; set; }
         public int KullanimAdedi { get; set; }
         public int MaxKullanimAdedi { get; set; }
-        public byte KullanimDisi { get; set; }
+        public bool KullanimDisi { get; set; }
     }
 }

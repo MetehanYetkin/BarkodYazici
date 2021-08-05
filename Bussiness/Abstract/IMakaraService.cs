@@ -1,4 +1,5 @@
-﻿using Entities.Concrate;
+﻿using Core.Utilities.Results;
+using Entities.Concrate;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,10 +8,10 @@ namespace Bussiness.Abstract
 {
    public interface IMakaraService
     {
-        List<Makara> GetAll();
-        void Add(Makara makara);
-        void Delete(Makara makara);
-        void Update(Makara makara);
+       IDataResult<List<Makara>> GetAll();
+        IResult Add(Makara makara);
+        IResult Delete(Makara makara);
+        IResult Update(Makara makara);
 
 
 
