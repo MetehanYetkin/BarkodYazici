@@ -11,5 +11,6 @@ namespace Bussiness.Abstract
         IResult Add(Barkod barkod);
         IResult Delete(Barkod barkod);
         IResult Update(Barkod barkod);
+        void PrintBarcode();
     }
 }

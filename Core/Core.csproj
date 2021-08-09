@@ -7,9 +7,11 @@
   <ItemGroup>
     <Folder Include="Abstract\" />
     <Folder Include="Concrate\" />
+    <Folder Include="Helper\BarcodeDesign\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BarCode" Version="2021.6.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.11" />
   </ItemGroup>
 
