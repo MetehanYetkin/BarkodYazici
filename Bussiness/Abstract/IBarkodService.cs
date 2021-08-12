@@ -12,5 +12,7 @@ namespace Bussiness.Abstract
         IResult Delete(Barkod barkod);
         IResult Update(Barkod barkod);
         void PrintBarcode();
+        void Example2(string üretimYili, string üretimAyi, string makaraTipi, string malzemesi, string üretici, string no);
+        void deneme();
     }
 }

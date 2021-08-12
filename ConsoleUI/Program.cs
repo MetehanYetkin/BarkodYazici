@@ -50,7 +50,9 @@ namespace ConsoleUI
         private static void BarcodePrintTest()
         {
             BarkodManager barkodManager = new BarkodManager(new EfBarkodDal());
-            barkodManager.PrintBarcode();
+            //barkodManager.PrintBarcode();
+            //barkodManager.Example2("20", "01", "7", "AB", "H","100");
+            barkodManager.deneme();
         }
     }
 }
