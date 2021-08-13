@@ -14,7 +14,7 @@ namespace DataAccess.EntityFramework
 
         }
         public DbSet<Makara> Makaralar { get; set; }
-        public DbSet<Barkod> Barkodlar { get; set; }
+        public DbSet<Barkod> Barcodes { get; set; }
 
     }
 }

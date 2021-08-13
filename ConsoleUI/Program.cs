@@ -11,8 +11,8 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            MakaraTest();
-            BarkodTest();
+           // MakaraTest();
+          //BarkodTest();
             BarcodePrintTest();
            // Console.WriteLine("Example 1 - Render a Simple Barcode");
            // BarkodTasarım.Example1("20", "01", "7", "AB", "H");
@@ -34,16 +34,18 @@ namespace ConsoleUI
             Barkod _barkod;
             _barkod = new Barkod
             {
-                UretimYili=20,
-                UretimAyi=01,
-                MakaraTipi=7,
-                Malzemesi="AB",
-                Uretici="D"
+               Material="PP",
+               MonthOfProduction=04,
+               Producer="Haffner",
+               PulleyType=7300,
+               UniqueNumber=006,
+               YearOfProduction=2022
             };
 
             BarkodManager barkodManager = new BarkodManager(new EfBarkodDal());
 
-            barkodManager.Add(_barkod);
+           var x= barkodManager.Add(_barkod);
+            Console.WriteLine(x.Message);
 
             // Console.WriteLine("GetAlla girdi"+ makaraManager.GetAll()); 
         }
@@ -52,7 +54,14 @@ namespace ConsoleUI
             BarkodManager barkodManager = new BarkodManager(new EfBarkodDal());
             //barkodManager.PrintBarcode();
             //barkodManager.Example2("20", "01", "7", "AB", "H","100");
-            barkodManager.deneme();
+             barkodManager.deneme();
+          
+            //foreach (var barcode in barkodManager.GetAll().Data)
+            //{
+            //    string xxx = barcode.YearOfProduction.ToString().Substring(2,2) + barcode.MonthOfProduction + barcode.PulleyType.ToString().Substring(0,1) + barcode.Material + barcode.Producer.Substring(0,1) + barcode.UniqueNumber + 1;
+            //    Console.WriteLine(xxx.Trim());
+            //}
+
         }
     }
 }
