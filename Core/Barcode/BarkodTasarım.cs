@@ -23,7 +23,7 @@ namespace Core.Barcode
         }
         public static void QrCodeDesign()
         { 
-            string barcodeNo = "1233213";
+           // string barcodeNo = "1233213";
             string MyValue = "1234213";
             System.Drawing.Bitmap BarcodeBmp = IronBarCode.BarcodeWriter.CreateBarcode(MyValue, BarcodeEncoding.QRCode).ResizeTo(300, 200).SetMargins(100).ToBitmap();
             BarcodeBmp.Save("BarcodeBmp.bmp");

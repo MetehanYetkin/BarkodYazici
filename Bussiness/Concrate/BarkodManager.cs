@@ -18,6 +18,7 @@ namespace Bussiness.Concrate
     public class BarkodManager : IBarkodService
     {
         IBarkodDal _barkodDal;
+        List<string> formBarcodes = new List<string>();
 
         public BarkodManager(IBarkodDal barkodDal)
         {
@@ -50,7 +51,7 @@ namespace Bussiness.Concrate
             return new SuccessDataResult<List<Barkod>>(_barkodDal.GetAll(), "Barkodlar Listelendi");
         }
 
-        public void deneme()
+        public void PrintQRCode()
         {
 
             PrintDocument pd = new PrintDocument();
@@ -61,6 +62,7 @@ namespace Bussiness.Concrate
             pd.Print();
 
         }
+
         public void Pd_PrintPage(object sender, PrintPageEventArgs e)
         {
 
@@ -81,9 +83,9 @@ namespace Bussiness.Concrate
             {
                  
 
-                string xxx = barcodes.YearOfProduction.ToString().Substring(2, 2) + barcodes.MonthOfProduction + barcodes.PulleyType.ToString().Substring(0, 1) + barcodes.Material + barcodes.Producer.Substring(0, 1) + barcodes.UniqueNumber;
+                string xxx = $"{barcodes.YearOfProduction.ToString().Substring(2, 2)}{barcodes.MonthOfProduction}{barcodes.PulleyType.ToString().Substring(0, 1)}{barcodes.Material}{barcodes.Producer.Substring(0, 1)}";
 
-                Console.WriteLine(xxx);
+                //Console.WriteLine(xxx);
                 QRCodeGenerator qrGenerator = new QRCodeGenerator();
                 QRCodeData qrCodeData = qrGenerator.CreateQrCode(xxx, QRCodeGenerator.ECCLevel.Q);
                 QRCode qrCode = new QRCode(qrCodeData);
@@ -185,7 +187,17 @@ namespace Bussiness.Concrate
                 process.Start();
                 process.WaitForExit();
             }
+
+        public IDataResult<Barkod> GetById(int barcodeId)
+        {
+            return new SuccessDataResult<Barkod>(_barkodDal.Get(p => p.Id == barcodeId));
         }
+
+        public void getString(string code)
+        {
+            formBarcodes.Add(code);
+        }
+    }
     }
 
 

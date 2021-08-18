@@ -12,7 +12,9 @@ namespace Bussiness.Abstract
         IResult Delete(Barkod barkod);
         IResult Update(Barkod barkod);
         void PrintBarcode();
-        void deneme();
+        void PrintQRCode();
         IDataResult<List<Barkod>> GetAll();
+        IDataResult<Barkod> GetById(int barcodeId);
+        void getString(string code);
     }
 }

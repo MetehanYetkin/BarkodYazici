@@ -8,11 +8,11 @@ namespace Entities.Concrate
     {
         public int Id { get; set; }
         public int YearOfProduction { get; set; }
-        public int MonthOfProduction { get; set; }
+        public string MonthOfProduction { get; set; }
         public int PulleyType { get; set; }
         public string Material { get; set; }
         public string Producer { get; set; }
-        public int UniqueNumber { get; set; }
+       public int UniqueNumber { get; set; }
 
     }
 }

@@ -12,7 +12,7 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
            // MakaraTest();
-          //BarkodTest();
+         // BarkodTest();
             BarcodePrintTest();
            // Console.WriteLine("Example 1 - Render a Simple Barcode");
            // BarkodTasarım.Example1("20", "01", "7", "AB", "H");
@@ -35,10 +35,10 @@ namespace ConsoleUI
             _barkod = new Barkod
             {
                Material="PP",
-               MonthOfProduction=04,
+               MonthOfProduction="02",
                Producer="Haffner",
                PulleyType=7300,
-               UniqueNumber=006,
+               UniqueNumber=010,
                YearOfProduction=2022
             };
 
@@ -54,7 +54,7 @@ namespace ConsoleUI
             BarkodManager barkodManager = new BarkodManager(new EfBarkodDal());
             //barkodManager.PrintBarcode();
             //barkodManager.Example2("20", "01", "7", "AB", "H","100");
-             barkodManager.deneme();
+             barkodManager.PrintQRCode();
           
             //foreach (var barcode in barkodManager.GetAll().Data)
             //{
