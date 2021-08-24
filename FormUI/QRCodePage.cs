@@ -239,7 +239,7 @@ namespace FormUI
 
                 itemperpage++;
                
-                if (itemperpage<4)
+                if (itemperpage<=4)
                 {
                    
                     numberOfItemsPrintSoFar++;
@@ -258,6 +258,7 @@ namespace FormUI
                 {
                     itemperpage = 0;
                     e.HasMorePages = true;
+                    return;
                 }
                // e.HasMorePages = (ps.Height > y);
                 //e.HasMorePages = (ps.Width > total);
@@ -290,8 +291,8 @@ namespace FormUI
                 //}
 
             }
-
-
+            numberOfItemsPrintSoFar = 0;
+            itemperpage = 0;
         }
 
 
