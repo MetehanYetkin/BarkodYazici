@@ -9,5 +9,8 @@ namespace DataAccess.EntityFramework
 {
     public class EfBarkodDal : EfEntityRepositoryBase<Barkod, BarkodYazıcıContext>, IBarkodDal
     {
+       
     }
+    
+
 }

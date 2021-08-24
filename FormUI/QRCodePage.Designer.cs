@@ -39,6 +39,7 @@ namespace FormUI
             this.colMaterial = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colProducer = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUniqueNumber = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
@@ -62,6 +63,7 @@ namespace FormUI
             this.checkedComboBoxEdit1 = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -84,10 +86,10 @@ namespace FormUI
             // gridControl1
             // 
             this.gridControl1.DataSource = typeof(Entities.Concrate.Barkod);
-            this.gridControl1.Location = new System.Drawing.Point(3, 1);
+            this.gridControl1.Location = new System.Drawing.Point(0, 1);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(643, 845);
+            this.gridControl1.Size = new System.Drawing.Size(646, 845);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -102,13 +104,13 @@ namespace FormUI
             this.colPulleyType,
             this.colMaterial,
             this.colProducer,
-            this.colUniqueNumber});
+            this.colUniqueNumber,
+            this.gridColumn1});
             this.gridView1.CustomizationFormBounds = new System.Drawing.Rectangle(1623, 730, 252, 266);
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsSelection.CheckBoxSelectorField = "Id";
-            this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.FocusedRowObjectChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventHandler(this.gridView1_FocusedRowObjectChanged);
             // 
             // colId
@@ -116,14 +118,14 @@ namespace FormUI
             this.colId.FieldName = "Id";
             this.colId.Name = "colId";
             this.colId.Visible = true;
-            this.colId.VisibleIndex = 1;
+            this.colId.VisibleIndex = 0;
             // 
             // colYearOfProduction
             // 
             this.colYearOfProduction.FieldName = "YearOfProduction";
             this.colYearOfProduction.Name = "colYearOfProduction";
             this.colYearOfProduction.Visible = true;
-            this.colYearOfProduction.VisibleIndex = 2;
+            this.colYearOfProduction.VisibleIndex = 1;
             this.colYearOfProduction.Width = 114;
             // 
             // colMonthOfProduction
@@ -131,7 +133,7 @@ namespace FormUI
             this.colMonthOfProduction.FieldName = "MonthOfProduction";
             this.colMonthOfProduction.Name = "colMonthOfProduction";
             this.colMonthOfProduction.Visible = true;
-            this.colMonthOfProduction.VisibleIndex = 3;
+            this.colMonthOfProduction.VisibleIndex = 2;
             this.colMonthOfProduction.Width = 122;
             // 
             // colPulleyType
@@ -139,7 +141,7 @@ namespace FormUI
             this.colPulleyType.FieldName = "PulleyType";
             this.colPulleyType.Name = "colPulleyType";
             this.colPulleyType.Visible = true;
-            this.colPulleyType.VisibleIndex = 4;
+            this.colPulleyType.VisibleIndex = 3;
             this.colPulleyType.Width = 78;
             // 
             // colMaterial
@@ -147,22 +149,29 @@ namespace FormUI
             this.colMaterial.FieldName = "Material";
             this.colMaterial.Name = "colMaterial";
             this.colMaterial.Visible = true;
-            this.colMaterial.VisibleIndex = 5;
+            this.colMaterial.VisibleIndex = 4;
             // 
             // colProducer
             // 
             this.colProducer.FieldName = "Producer";
             this.colProducer.Name = "colProducer";
             this.colProducer.Visible = true;
-            this.colProducer.VisibleIndex = 6;
+            this.colProducer.VisibleIndex = 5;
             // 
             // colUniqueNumber
             // 
             this.colUniqueNumber.FieldName = "UniqueNumber";
             this.colUniqueNumber.Name = "colUniqueNumber";
             this.colUniqueNumber.Visible = true;
-            this.colUniqueNumber.VisibleIndex = 7;
+            this.colUniqueNumber.VisibleIndex = 6;
             this.colUniqueNumber.Width = 96;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.FieldName = "BarcodeNo";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 7;
             // 
             // xtraTabControl1
             // 
@@ -203,12 +212,13 @@ namespace FormUI
             this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Controls.Add(this.checkedComboBoxEdit1);
-            this.groupControl1.Location = new System.Drawing.Point(3, 3);
+            this.groupControl1.Location = new System.Drawing.Point(3, 0);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.ShowCaption = false;
             this.groupControl1.Size = new System.Drawing.Size(296, 798);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "groupControl1";
+            this.groupControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl1_Paint);
             // 
             // labelControl8
             // 
@@ -410,6 +420,7 @@ namespace FormUI
             new DevExpress.XtraEditors.Controls.CheckedListBoxItem(2021, "2021"),
             new DevExpress.XtraEditors.Controls.CheckedListBoxItem(2022, "2022"),
             new DevExpress.XtraEditors.Controls.CheckedListBoxItem(2023, "2023")});
+            this.checkedComboBoxEdit1.Properties.SelectAllItemVisible = false;
             this.checkedComboBoxEdit1.Size = new System.Drawing.Size(100, 20);
             this.checkedComboBoxEdit1.TabIndex = 7;
             this.checkedComboBoxEdit1.EditValueChanged += new System.EventHandler(this.checkedComboBoxEdit1_EditValueChanged);
@@ -432,6 +443,10 @@ namespace FormUI
             this.groupControl2.TabIndex = 1;
             this.groupControl2.Text = "groupControl2";
             // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.Pd_PrintPage);
+            // 
             // QRCodePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -441,6 +456,7 @@ namespace FormUI
             this.Controls.Add(this.gridControl1);
             this.Name = "QRCodePage";
             this.Text = "QRCodePage";
+            this.Load += new System.EventHandler(this.QRCodePage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
@@ -476,7 +492,6 @@ namespace FormUI
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.GroupControl groupControl2;
-        private DevExpress.XtraEditors.CheckedComboBoxEdit checkedComboBoxEdit1;
         private DevExpress.XtraEditors.CheckedComboBoxEdit checkedComboBoxEdit5;
         private DevExpress.XtraEditors.CheckedComboBoxEdit checkedComboBoxEdit4;
         private DevExpress.XtraEditors.CheckedComboBoxEdit checkedComboBoxEdit3;
@@ -497,5 +512,8 @@ namespace FormUI
         private DevExpress.XtraGrid.Columns.GridColumn colMaterial;
         private DevExpress.XtraGrid.Columns.GridColumn colProducer;
         private DevExpress.XtraGrid.Columns.GridColumn colUniqueNumber;
+        private DevExpress.XtraEditors.CheckedComboBoxEdit checkedComboBoxEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }

@@ -67,22 +67,16 @@ namespace Bussiness.Concrate
         {
 
             List<string> barcodeList = new List<string>();
-            int clone = 0;
 
             int total = 15;
-            int c = 0;
 
             int y = 33;
-            int counter = 0;
-            foreach (var item in GetAll().Data)
-            {
-                clone++;
-            }
+          
            
             foreach (var barcodes in GetAll().Data)
             {
-                 
 
+                e.HasMorePages = false;
                 string xxx = $"{barcodes.YearOfProduction.ToString().Substring(2, 2)}{barcodes.MonthOfProduction}{barcodes.PulleyType.ToString().Substring(0, 1)}{barcodes.Material}{barcodes.Producer.Substring(0, 1)}";
 
                 //Console.WriteLine(xxx);
@@ -90,33 +84,19 @@ namespace Bussiness.Concrate
                 QRCodeData qrCodeData = qrGenerator.CreateQrCode(xxx, QRCodeGenerator.ECCLevel.Q);
                 QRCode qrCode = new QRCode(qrCodeData);
                 Bitmap qrCodeImage = qrCode.GetGraphic(5);
-                e.Graphics.DrawImage(qrCodeImage, (total), 33, 75, 75);
+                e.Graphics.DrawImage(qrCodeImage, (total), y, 75, 75);
                 qrCodeImage.Dispose();
                 total += 95;
-                counter++;
-                barcodeList.Add(xxx);
-                clone--;   
             
-
                 if (total > 300)
                 {
 
                     total = 15;
-                    //y += 90;
+                    y += 90;
                     e.HasMorePages = true;
                 }
 
-                else if (clone != 0)
-                {
-                   
-                        e.HasMorePages = false;
-                    continue;
-                }
-                else
-                {
-
-                    break;
-                }
+               
 
 
 
@@ -200,31 +180,3 @@ namespace Bussiness.Concrate
     }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//var x = BarkodTasarım.Example1("20", "01", "7", "AB", "H", "001");
-
-
-//var path = @"C:\Deneme.prn";
-//qrBarcodeLine.Add("N");
-
-//qrBarcodeLine.Add("q406");
-
-//qrBarcodeLine.Add("B31,80,0,1,3,7,58,B," + Convert.ToChar(34) + x + Convert.ToChar(34));
-
-//qrBarcodeLine.Add("P1");
-//qrBarcodeLine.Add("M");
-//qrBarcodeLine.Add("N");

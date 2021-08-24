@@ -13,6 +13,7 @@ namespace Entities.Concrate
         public string Material { get; set; }
         public string Producer { get; set; }
        public int UniqueNumber { get; set; }
+        public string BarcodeNo { get; set; }
 
     }
 }

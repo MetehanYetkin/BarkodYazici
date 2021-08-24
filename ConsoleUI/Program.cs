@@ -39,6 +39,7 @@ namespace ConsoleUI
                Producer="Haffner",
                PulleyType=7300,
                UniqueNumber=010,
+               BarcodeNo="123123ds",
                YearOfProduction=2022
             };
 
