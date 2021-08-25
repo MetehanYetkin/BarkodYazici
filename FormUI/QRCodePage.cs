@@ -38,8 +38,6 @@ namespace FormUI
             
 
 
-
-
         }
         //Değişkenler 
 
@@ -51,6 +49,9 @@ namespace FormUI
         List<string> selectRowId = new List<string>();
         BarkodYazıcıContext dbContext = new BarkodYazıcıContext();
         private int numberOfItemsPrintSoFar = 0;
+        private int numberOfItemsPrintSoFar1 = 0;
+      private int itemperpage = 0;
+      private int itemperpage1 = 0;
 
 
 
@@ -178,7 +179,7 @@ namespace FormUI
                 //textEdit3.Text += array1[i] + "-";
 
             }
-
+           // onlySelectedRow();
 
             //gridView1.ClearSelection();
 
@@ -189,7 +190,7 @@ namespace FormUI
 
         private void simpleButton2_Click(object sender, EventArgs e)// yazdırma butonu
         {
-            onlySelectedRow();
+           // onlySelectedRow();
             //pd.Print();
             PrintQRCodeForm();
             // printBarcodeDev();
@@ -200,17 +201,15 @@ namespace FormUI
         public void PrintQRCodeForm()
         {
 
-
-
+            PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
             PrintDocument pd = new PrintDocument();
             PrintDialog pde = new PrintDialog();
 
             pd.PrintPage += new PrintPageEventHandler(Pd_PrintPage);
-            ps.Height = pd.PrinterSettings.DefaultPageSettings.PaperSize.Height ;
-            pd.DefaultPageSettings.Landscape = true;
-            ps.Width = pd.PrinterSettings.DefaultPageSettings.PaperSize.Width ;
 
             pde.Document = pd;
+            printPreviewDialog1.Document = pd;
+           // printPreviewDialog1.ShowDialog();
             // pde.ShowDialog();            
             pd.Print();
 
@@ -229,9 +228,8 @@ namespace FormUI
         }
 
         int total = 15;
-        int y = 33;
-        int itemperpage = 0;
-        private void Pd_PrintPage(object sender, PrintPageEventArgs e)//son 4 lü sırayı 4 kez bastırıyor.
+        int y = 15;
+        private void Pd_PrintPage(object sender, PrintPageEventArgs e)
         {
             //e.HasMorePages = true;
             for (int i = numberOfItemsPrintSoFar; i < gridView1.DataRowCount; i++)
@@ -256,39 +254,12 @@ namespace FormUI
                 }
                 else
                 {
+                    total = 15;
                     itemperpage = 0;
                     e.HasMorePages = true;
-                    return;
+                   return;
                 }
-               // e.HasMorePages = (ps.Height > y);
-                //e.HasMorePages = (ps.Width > total);
-
-                //if (total>300)
-                //{
-                //    total = 15;
-                //    e.HasMorePages = false;
-                //}
-                // if (total == 110)
-                //{
-
-                //    e.HasMorePages = true;
-
-                //}
-                //else if (total == 205)
-                //{
-                //    e.HasMorePages = true;
-                //}
-                //else if(total == 300)
-                //{
-                //    e.HasMorePages = true;
-                //}
-
-                //else
-                //{
-                //    e.HasMorePages = false;
-                //    total = 15;
-
-                //}
+  
 
             }
             numberOfItemsPrintSoFar = 0;
@@ -296,29 +267,30 @@ namespace FormUI
         }
 
 
-       
 
+
+        ArrayList rows = new ArrayList();
 
         private void onlySelectedRow()
         {
-            ArrayList rows = new ArrayList();
-            GridColumn ıdColumn = gridView1.Columns["Id"];
-            string barcodeString = "";
+           //GridColumn barcodeColumn = gridView1.Columns["BarcodeNo"];
+            //string barcodeString = "";
             // Add the selected rows to the list.
 
             for (int i = 0; i < gridView1.RowCount; i++)
             {
                 if (gridView1.IsRowSelected(i))
                 {
-                    string Idee = gridView1.GetRowCellValue(i, "Id").ToString();
-                    rows.Add(Idee);
+                    string no = gridView1.GetRowCellValue(i, "BarcodeNo").ToString();
+                    rows.Add(no);
                 }
+
             }
             foreach (var item2 in rows)
             {
-                var barcode = barkodManager.GetById(Convert.ToInt32(item2));
-                barcodeString = barcode.Data.YearOfProduction.ToString().Substring(2, 2) + barcode.Data.MonthOfProduction.ToString() + barcode.Data.PulleyType.ToString().Substring(0, 1) + barcode.Data.Material + barcode.Data.Producer.Substring(0, 1) + barcode.Data.UniqueNumber.ToString();
-                printBarcodes.Add(barcodeString);
+            //    var barcode = barkodManager.GetById(Convert.ToInt32(item2));
+            //    barcodeString = barcode.Data.YearOfProduction.ToString().Substring(2, 2) + barcode.Data.MonthOfProduction.ToString() + barcode.Data.PulleyType.ToString().Substring(0, 1) + barcode.Data.Material + barcode.Data.Producer.Substring(0, 1) + barcode.Data.UniqueNumber.ToString();
+            //    printBarcodes.Add(barcodeString);
                 textEdit3.Text += item2 + "-";
 
             }
@@ -395,19 +367,86 @@ namespace FormUI
         {
         }
 
-        private void QRCodePage_Load(object sender, EventArgs e)
-        {
+        //private void QRCodePage_Load(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
         private void groupControl1_Paint(object sender, PaintEventArgs e)
         {
 
         }
+
+        private void simpleButton3_Click(object sender, EventArgs e)//seçileni yazdırma 
+        {
+            onlySelectedRow();
+            PrintSelectedCode();
+        }
+        public void PrintSelectedCode()
+        {
+
+            PrintPreviewDialog printPreviewDialog2 = new PrintPreviewDialog();
+            PrintDocument pd1 = new PrintDocument();
+            PrintDialog pde1 = new PrintDialog();
+
+            pd1.PrintPage += new PrintPageEventHandler(Pd1_PrintPage);
+
+            pde1.Document = pd1;
+            printPreviewDialog2.Document = pd1;
+            // printPreviewDialog1.ShowDialog();
+            // pde.ShowDialog();            
+            pd1.Print();
+
+
+        }
+        int total1 = 15;
+        int y1 = 0;
+        private void Pd1_PrintPage(object sender, PrintPageEventArgs e)
+        { //e.HasMorePages = true;
+            for (int i = numberOfItemsPrintSoFar1; i < gridView1.DataRowCount; i++)
+            {
+
+                itemperpage1++;
+
+                if (itemperpage1 <= 4)
+                {
+
+                    numberOfItemsPrintSoFar1++;
+                    if (numberOfItemsPrintSoFar1 <= gridView1.DataRowCount)
+                    {
+                        if (gridView1.IsRowSelected(i))
+                        {
+                            string xbarcode1 = gridView1.GetRowCellValue(i, "BarcodeNo").ToString();
+                            e.Graphics.DrawImage(barcodeGenarator(xbarcode1), (total1), (y1), 75, 75);
+                            total1 += 95;
+                        }
+                       // else continue;
+                         
+                    }
+                    else
+                    {
+                        e.HasMorePages = false;
+                    }
+                }
+                else
+                {
+                    total1 = 15;
+                    itemperpage1 = 0;
+                    e.HasMorePages = true;
+                    return;
+                }
+
+
+            }
+            numberOfItemsPrintSoFar1 = 0;
+            itemperpage1 = 0;
+        }
+    }
     }
 
-       
-    
-}
-    
+
+
+
+ 
+
 

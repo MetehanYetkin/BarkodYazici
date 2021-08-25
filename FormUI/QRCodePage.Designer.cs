@@ -64,6 +64,8 @@ namespace FormUI
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -194,6 +196,8 @@ namespace FormUI
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.simpleButton3);
+            this.groupControl1.Controls.Add(this.labelControl9);
             this.groupControl1.Controls.Add(this.labelControl8);
             this.groupControl1.Controls.Add(this.labelControl7);
             this.groupControl1.Controls.Add(this.simpleButton2);
@@ -222,26 +226,26 @@ namespace FormUI
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(109, 691);
+            this.labelControl8.Location = new System.Drawing.Point(93, 691);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(97, 13);
+            this.labelControl8.Size = new System.Drawing.Size(116, 13);
             this.labelControl8.TabIndex = 16;
-            this.labelControl8.Text = "Selected Barcode ID";
+            this.labelControl8.Text = "Seçilen Barkod Numarası";
             this.labelControl8.Click += new System.EventHandler(this.labelControl8_Click);
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(124, 433);
+            this.labelControl7.Location = new System.Drawing.Point(198, 433);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(66, 13);
             this.labelControl7.TabIndex = 15;
-            this.labelControl7.Text = "Print Selected";
+            this.labelControl7.Text = "Hepsini Yazdır";
             this.labelControl7.Click += new System.EventHandler(this.labelControl7_Click);
             // 
             // simpleButton2
             // 
             this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.simpleButton2.Location = new System.Drawing.Point(138, 452);
+            this.simpleButton2.Location = new System.Drawing.Point(198, 452);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
             this.simpleButton2.Size = new System.Drawing.Size(75, 23);
@@ -250,9 +254,9 @@ namespace FormUI
             // 
             // textEdit3
             // 
-            this.textEdit3.Location = new System.Drawing.Point(109, 710);
+            this.textEdit3.Location = new System.Drawing.Point(5, 710);
             this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Size = new System.Drawing.Size(100, 20);
+            this.textEdit3.Size = new System.Drawing.Size(286, 20);
             this.textEdit3.TabIndex = 2;
             // 
             // textEdit2
@@ -447,6 +451,24 @@ namespace FormUI
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.Pd_PrintPage);
             // 
+            // labelControl9
+            // 
+            this.labelControl9.Location = new System.Drawing.Point(45, 433);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(79, 13);
+            this.labelControl9.TabIndex = 17;
+            this.labelControl9.Text = "Seçilenleri Yazdır";
+            // 
+            // simpleButton3
+            // 
+            this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
+            this.simpleButton3.Location = new System.Drawing.Point(49, 452);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.simpleButton3.Size = new System.Drawing.Size(53, 23);
+            this.simpleButton3.TabIndex = 18;
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
+            // 
             // QRCodePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -456,7 +478,7 @@ namespace FormUI
             this.Controls.Add(this.gridControl1);
             this.Name = "QRCodePage";
             this.Text = "QRCodePage";
-            this.Load += new System.EventHandler(this.QRCodePage_Load);
+            //this.Load += new System.EventHandler(this.QRCodePage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
@@ -515,5 +537,7 @@ namespace FormUI
         private DevExpress.XtraEditors.CheckedComboBoxEdit checkedComboBoxEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private System.Drawing.Printing.PrintDocument printDocument1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
     }
 }
