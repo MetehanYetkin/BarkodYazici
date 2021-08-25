@@ -50,95 +50,14 @@ namespace FormUI
         BarkodYazıcıContext dbContext = new BarkodYazıcıContext();
         private int numberOfItemsPrintSoFar = 0;
         private int numberOfItemsPrintSoFar1 = 0;
-      private int itemperpage = 0;
-      private int itemperpage1 = 0;
-
-
-
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-
-
-            string YearsOfProduction = "";
-            foreach (CheckedListBoxItem item in checkedComboBoxEdit1.Properties.Items)
-            {
-                if (item.CheckState == CheckState.Checked)
-
-                    YearsOfProduction = item.ToString();
-            }
-            string MonthOfProduction = "";
-            foreach (CheckedListBoxItem item in checkedComboBoxEdit2.Properties.Items)
-            {
-                if (item.CheckState == CheckState.Checked)
-                    MonthOfProduction = item.ToString();
-            }
-            string PulleyType = "";
-            foreach (CheckedListBoxItem item in checkedComboBoxEdit3.Properties.Items)
-            {
-                if (item.CheckState == CheckState.Checked)
-                    PulleyType = item.ToString();
-            }
-            string Material = "";
-            foreach (CheckedListBoxItem item in checkedComboBoxEdit4.Properties.Items)
-            {
-                if (item.CheckState == CheckState.Checked)
-                    Material = item.ToString();
-            }
-            string Producer = "";
-            foreach (CheckedListBoxItem item in checkedComboBoxEdit5.Properties.Items)
-            {
-                if (item.CheckState == CheckState.Checked)
-                    Producer = item.ToString();
-            }
-            string unique = "";
-
-            string code = YearsOfProduction.Substring(2, 2) + MonthOfProduction + PulleyType.Substring(0, 1) + Material + Producer.Substring(0, 1);
-            var number = gridView1.GetRowCellValue(gridView1.DataRowCount - 1, "UniqueNumber");
+        private int itemperpage = 0;
+        private int itemperpage1 = 0;
+        ArrayList rows = new ArrayList();
 
 
 
 
-            for (int i = 0; i < gridView1.DataRowCount; i++)
-            {
-                string xde = gridView1.GetRowCellValue(i, "YearOfProduction").ToString();
-                string xde1 = gridView1.GetRowCellValue(i, "MonthOfProduction").ToString();
-                string xde2 = gridView1.GetRowCellValue(i, "PulleyType").ToString();
-                string xde3 = gridView1.GetRowCellValue(i, "Material").ToString();
-                string xde4 = gridView1.GetRowCellValue(i, "Producer").ToString();
-                unique = gridView1.GetRowCellValue(i, "UniqueNumber").ToString();
-
-                string de = xde.ToString().Substring(2, 2) + xde1 + xde2.ToString().Substring(0, 1) + xde3 + xde4.Substring(0, 1);
-                if (code == de)
-                {
-                    maxUniq.Add(Convert.ToInt32(unique));
-                }
-
-            }
-            if (maxUniq.Count == 0)
-            {
-                maxUniq.Add(99);
-            }
-
-            int CodeUNIQUE = maxUniq.Max() + 1;
-            string codsee = YearsOfProduction.Substring(2, 2) + MonthOfProduction + PulleyType.Substring(0, 1) + Material + Producer.Substring(0, 1) + Convert.ToString(CodeUNIQUE);
-
-            _barkod = new Barkod
-            {
-                Material = Material,
-                MonthOfProduction = MonthOfProduction,
-                Producer = Producer,
-                PulleyType = Convert.ToInt32(PulleyType),
-                UniqueNumber = maxUniq.Max() + 1,
-                YearOfProduction = Convert.ToInt32(YearsOfProduction),
-                BarcodeNo = codsee,
-            };
-            barkodManager.Add(_barkod);
-            int CodeUNIQ = maxUniq.Max() + 1;
-            string codse = YearsOfProduction.Substring(2, 2) + MonthOfProduction + PulleyType.Substring(0, 1) + Material + Producer.Substring(0, 1) + Convert.ToString(CodeUNIQ);
-            textEdit1.Text = codse;
-            sqlLoad();
-            return;
-        }
+        
 
 
         private void gridControl1_Click(object sender, EventArgs e)
@@ -187,14 +106,14 @@ namespace FormUI
 
         }
 
-
-        private void simpleButton2_Click(object sender, EventArgs e)// yazdırma butonu
+        private void simpleButton3_Click_1(object sender, EventArgs e)//HEPSİNİ YAZDIR
         {
-           // onlySelectedRow();
+            // onlySelectedRow();
             //pd.Print();
             PrintQRCodeForm();
             // printBarcodeDev();
         }
+       
         PaperSize ps = new PaperSize();
         
 
@@ -228,7 +147,7 @@ namespace FormUI
         }
 
         int total = 15;
-        int y = 15;
+        int y = 0;
         private void Pd_PrintPage(object sender, PrintPageEventArgs e)
         {
             //e.HasMorePages = true;
@@ -244,7 +163,7 @@ namespace FormUI
                     if (numberOfItemsPrintSoFar <= gridView1.DataRowCount)
                     {
                         string xbarcode = gridView1.GetRowCellValue(i, "BarcodeNo").ToString();
-                        e.Graphics.DrawImage(barcodeGenarator(xbarcode), (total), (y), 75, 75);
+                        e.Graphics.DrawImage(barcodeGenarator(xbarcode), (total), (y), 60, 60);
                         total += 95;
                     }
                     else
@@ -269,7 +188,6 @@ namespace FormUI
 
 
 
-        ArrayList rows = new ArrayList();
 
         private void onlySelectedRow()
         {
@@ -291,7 +209,7 @@ namespace FormUI
             //    var barcode = barkodManager.GetById(Convert.ToInt32(item2));
             //    barcodeString = barcode.Data.YearOfProduction.ToString().Substring(2, 2) + barcode.Data.MonthOfProduction.ToString() + barcode.Data.PulleyType.ToString().Substring(0, 1) + barcode.Data.Material + barcode.Data.Producer.Substring(0, 1) + barcode.Data.UniqueNumber.ToString();
             //    printBarcodes.Add(barcodeString);
-                textEdit3.Text += item2 + "-";
+                textEdit5.Text += item2 + "-";
 
             }
         }
@@ -376,11 +294,15 @@ namespace FormUI
         {
 
         }
-
-        private void simpleButton3_Click(object sender, EventArgs e)//seçileni yazdırma 
+        private void simpleButton4_Click(object sender, EventArgs e)//SEÇİLEN BARKODLARI YAZDIRMA
         {
             onlySelectedRow();
             PrintSelectedCode();
+        }
+
+        private void simpleButton3_Click(object sender, EventArgs e)//seçileni yazdırma 
+        {
+            
         }
         public void PrintSelectedCode()
         {
@@ -417,7 +339,7 @@ namespace FormUI
                         if (gridView1.IsRowSelected(i))
                         {
                             string xbarcode1 = gridView1.GetRowCellValue(i, "BarcodeNo").ToString();
-                            e.Graphics.DrawImage(barcodeGenarator(xbarcode1), (total1), (y1), 75, 75);
+                            e.Graphics.DrawImage(barcodeGenarator(xbarcode1), (total1), (y1), 60, 60);
                             total1 += 95;
                         }
                        // else continue;
@@ -441,6 +363,104 @@ namespace FormUI
             numberOfItemsPrintSoFar1 = 0;
             itemperpage1 = 0;
         }
+
+        private void xtraTabPage2_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void labelControl7_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+     
+
+        private void simpleButton2_Click_1(object sender, EventArgs e)//BARKOD EKLENEN BUTON 
+        {
+            string YearsOfProduction = "";
+            foreach (CheckedListBoxItem item in checkedComboBoxEdit6.Properties.Items)
+            {
+                if (item.CheckState == CheckState.Checked)
+
+                    YearsOfProduction = item.ToString();
+            }
+            string MonthOfProduction = "";
+            foreach (CheckedListBoxItem item in checkedComboBoxEdit7.Properties.Items)
+            {
+                if (item.CheckState == CheckState.Checked)
+                    MonthOfProduction = item.ToString();
+            }
+            string PulleyType = "";
+            foreach (CheckedListBoxItem item in checkedComboBoxEdit8.Properties.Items)
+            {
+                if (item.CheckState == CheckState.Checked)
+                    PulleyType = item.ToString();
+            }
+            string Material = "";
+            foreach (CheckedListBoxItem item in checkedComboBoxEdit9.Properties.Items)
+            {
+                if (item.CheckState == CheckState.Checked)
+                    Material = item.ToString();
+            }
+            string Producer = "";
+            foreach (CheckedListBoxItem item in checkedComboBoxEdit10.Properties.Items)
+            {
+                if (item.CheckState == CheckState.Checked)
+                    Producer = item.ToString();
+            }
+            string unique = "";
+
+            string code = YearsOfProduction.Substring(2, 2) + MonthOfProduction + PulleyType.Substring(0, 1) + Material + Producer.Substring(0, 1);
+            var number = gridView1.GetRowCellValue(gridView1.DataRowCount - 1, "UniqueNumber");
+
+
+
+
+            for (int i = 0; i < gridView1.DataRowCount; i++)
+            {
+                string xde = gridView1.GetRowCellValue(i, "YearOfProduction").ToString();
+                string xde1 = gridView1.GetRowCellValue(i, "MonthOfProduction").ToString();
+                string xde2 = gridView1.GetRowCellValue(i, "PulleyType").ToString();
+                string xde3 = gridView1.GetRowCellValue(i, "Material").ToString();
+                string xde4 = gridView1.GetRowCellValue(i, "Producer").ToString();
+                unique = gridView1.GetRowCellValue(i, "UniqueNumber").ToString();
+
+                string de = xde.ToString().Substring(2, 2) + xde1 + xde2.ToString().Substring(0, 1) + xde3 + xde4.Substring(0, 1);
+                if (code == de)
+                {
+                    maxUniq.Add(Convert.ToInt32(unique));
+                }
+
+            }
+            if (maxUniq.Count == 0)
+            {
+                maxUniq.Add(99);
+                
+            }
+
+            int CodeUNIQUE = maxUniq.Max() + 1;
+            string codsee = YearsOfProduction.Substring(2, 2) + MonthOfProduction + PulleyType.Substring(0, 1) + Material + Producer.Substring(0, 1) + Convert.ToString(CodeUNIQUE);
+
+            _barkod = new Barkod
+            {
+                Material = Material,
+                MonthOfProduction = MonthOfProduction,
+                Producer = Producer,
+                PulleyType = Convert.ToInt32(PulleyType),
+                UniqueNumber = maxUniq.Max() + 1,
+                YearOfProduction = Convert.ToInt32(YearsOfProduction),
+                BarcodeNo = codsee,
+            };
+            barkodManager.Add(_barkod);
+            int CodeUNIQ = maxUniq.Max() + 1;
+            string codse = YearsOfProduction.Substring(2, 2) + MonthOfProduction + PulleyType.Substring(0, 1) + Material + Producer.Substring(0, 1) + Convert.ToString(CodeUNIQ);
+            textEdit4.Text = codse;
+            sqlLoad();
+            return;
+        }
+
+      
     }
     }
 

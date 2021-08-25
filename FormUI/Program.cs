@@ -16,7 +16,7 @@ namespace FormUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new QRCodePage());
+            Application.Run(new LoginPage());
 
         }
     }
