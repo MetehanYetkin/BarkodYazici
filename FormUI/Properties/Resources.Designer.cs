@@ -63,9 +63,29 @@ namespace FormUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _123213 {
+            get {
+                object obj = ResourceManager.GetObject("123213", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap heskablo {
             get {
                 object obj = ResourceManager.GetObject("heskablo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap heskablosd {
+            get {
+                object obj = ResourceManager.GetObject("heskablosd", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
